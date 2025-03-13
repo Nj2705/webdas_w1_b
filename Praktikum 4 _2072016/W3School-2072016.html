@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-roboto">
+    <nav class="bg-gray-800 text-white p-4 flex justify-center space-x-8">
+        <a href="#" class="hover:underline">HTML</a>
+        <a href="#" class="hover:underline">CSS</a>
+        <a href="#" class="hover:underline">JAVASCRIPT</a>
+    </nav>
+    <div class="p-8">
+        <div class="bg-green-100 p-8 rounded-lg mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <h1 class="text-4xl font-bold">HTML</h1>
+                    <p class="text-lg">The language for building web pages</p>
+                    <div class="mt-4 space-y-2">
+                        <button class="bg-green-500 text-white py-2 px-4 rounded">Learn HTML</button>
+                        <button class="bg-black text-white py-2 px-4 rounded">HTML Reference</button>
+                        <button class="bg-pink-300 text-black py-2 px-4 rounded">Get Certified</button>
+                    </div>
+                </div>
+                <div class="bg-gray-800 text-white p-4 rounded-lg">
+                    <p class="font-bold">HTML Example:</p>
+                    <pre class="text-sm">
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;HTML Tutorial&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </pre>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded mt-4">Try it Yourself</button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-yellow-100 p-8 rounded-lg mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="bg-gray-800 text-white p-4 rounded-lg mb-4 md:mb-0">
+                    <p class="font-bold">CSS Example:</p>
+                    <pre class="text-sm">
+body {
+    background-color: lightblue;
+}
+h1 {
+    color: white;
+    text-align: center;
+}
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+                    </pre>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded mt-4">Try it Yourself</button>
+                </div>
+                <div class="text-center md:text-right">
+                    <h1 class="text-4xl font-bold">CSS</h1>
+                    <p class="text-lg">The language for styling web pages</p>
+                    <div class="mt-4 space-y-2">
+                        <button class="bg-green-500 text-white py-2 px-4 rounded">Learn CSS</button>
+                        <button class="bg-black text-white py-2 px-4 rounded">CSS Reference</button>
+                        <button class="bg-pink-300 text-black py-2 px-4 rounded">Get Certified</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-pink-100 p-8 rounded-lg">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <h1 class="text-4xl font-bold">JavaScript</h1>
+                    <p class="text-lg">The language for programming web pages</p>
+                    <div class="mt-4 space-y-2">
+                        <button class="bg-green-500 text-white py-2 px-4 rounded">Learn JavaScript</button>
+                        <button class="bg-black text-white py-2 px-4 rounded">JavaScript Reference</button>
+                        <button class="bg-pink-300 text-black py-2 px-4 rounded">Get Certified</button>
+                    </div>
+                </div>
+                <div class="bg-gray-800 text-white p-4 rounded-lg">
+                    <p class="font-bold">JavaScript Example:</p>
+                    <pre class="text-sm">
+&lt;button onclick="myFunction()"&gt;Click Me!&lt;/button&gt;
+&lt;script&gt;
+function myFunction() {
+    let x = document.getElementById("demo");
+    x.style.fontSize = "25px";
+    x.style.color = "red";
+}
+&lt;/script&gt;
+                    </pre>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded mt-4">Try it Yourself</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

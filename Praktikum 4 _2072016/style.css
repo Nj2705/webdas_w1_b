@@ -1,0 +1,108 @@
+/* Font utama */
+body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.nav {
+    width: 100%;
+    background-color: #282B30;
+    text-align: center;
+}
+
+.nav td {
+    padding: 15px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.nav a:hover {
+    background-color: #1E2124;
+}
+
+.nav a:active {
+    background-color: #7289DA;
+}
+
+/* Konten */
+.content {
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+}
+
+.sub-content {
+    width: 100%;
+    padding: 50px 0;
+}
+
+/* HTML Section */
+.html {
+    background-color: #D9EEE1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.html .left {
+    text-align: left;
+}
+
+.html img {
+    width: 300px;
+    height: auto;
+    margin-right: 50px;
+}
+
+/* CSS Section */
+.css {
+    background-color: #FFF4A3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.css img {
+    width: 300px;
+    height: auto;
+    margin-left: 50px;
+}
+
+/* JS Section */
+.js {
+    background-color: #F3ECEA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.js img {
+    width: 300px;
+    height: auto;
+    margin-right: 50px;
+}
+
+/* Button Style */
+button {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #028a57;
+}
