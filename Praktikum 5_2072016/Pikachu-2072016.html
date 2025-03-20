@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikachu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: beige;
+            margin: 0;
+            text-align: center;
+        }
+        .content-item {
+            position: relative;
+            width: 500px;
+            margin: 70px;
+            background-color: rgb(64, 138, 64);
+            padding: 40px;
+            padding-bottom:0px ;
+            border: 5px black solid;
+        }
+        .text{
+            font-weight: 900;
+            text-align: center;
+            font-size: 20px;
+            border: none;
+        }
+        hr {
+            width: 90%;
+            border: 1px solid black;
+        }
+        table {
+            margin: 30px auto;
+            border-spacing: 5px;
+        }
+
+        td{
+            border: 3px solid black;
+        }
+        footer {
+            background-color: rgb(251, 182, 54);
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 100;
+        }
+        #badan-pikachu{
+            position: relative;
+        }
+        .item{
+            position: relative;
+        }
+        .hidden{
+            visibility: hidden;
+        }
+        .item#mata-kanan{
+            left: 275px;
+            top: 245px;
+        }
+        #mata-kanan {
+            left: 320px;
+            top: 130px;
+        }
+        #mata-kiri {
+            left: 210px;
+            top: 130px;
+        }
+        #hidung {
+            left: 265px;
+            top: 190px;
+        }
+        #mulut {
+            left: 250px;
+            top: 230px;
+        }
+        #pipi-kanan {
+            left: 360px;
+            top: 200px;
+        }
+        #pipi-kiri {
+            left: 160px;
+            top: 200px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Position Relative with CSS</h1>
+    <hr>
+    <table>
+        <tr>
+            <td class="content-item">
+                <img src="mata-kanan.png" alt="">
+                <img src="mata-kiri.png" alt="">
+                <img src="hidung.png" alt="">
+                <img src="Mulut.png" alt="">
+                <img src="pipi-kanan.png" alt="">
+                <img src="pipi-kiri.png" alt="">
+                <img id="badan-pikachu" src="badan_pikachu.png">
+            </td>
+            <td class="content-item">
+                <img src="mata-kanan.png" alt="">
+                <img src="mata-kiri.png" alt="">
+                <img src="hidung.png" alt="">
+                <img src="Mulut.png" alt="">
+                <img src="pipi-kanan.png" alt="">
+                <img src="pipi-kiri.png" alt="">
+                <img id="badan-pikachu" src="badan_pikachu.png">
+            </td>
+        </tr>
+        <tr>
+            <td class="text">
+                <p>Sebelum CSS</p>
+            </td>
+            <td class="text">
+                <p>Setelah CSS</p>
+            </td>
+        </tr>
+    </table>
+    <footer>
+        [2072016]|[Nicole Jade]
+    </footer>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: beige;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            background-color: #402D26;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar div {
+            background-color: #76B947;
+            padding: 10px;
+            margin: 10px 0;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .sidebar div:hover {
+            background-color: #F19C1F;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #d9534f;
+        }
+
+        .section {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #5bc0de;
+        }
+
+        ul {
+            list-style: square;
+            padding-left: 20px;
+        }
+
+        /* Burger Pixel Art */
+        .burger {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .hide-and-seek {
+            position: sticky;
+            bottom: 20px;
+            width: 500px;
+            background-color: orange;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+            font-weight: bold;
+            margin: 20px auto;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .hide-and-seek:hover {
+            background-color: #F19C1F;
+        }
+
+        .hide-and-seek h2 {
+            color: #d9534f;
+            margin: 0;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>2072016</div>
+        <div>Nicole</div>
+        <div>Kelas B</div>
+        <div>Web Dasar</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Hi, I'm Burger 🙌</h1>
+        
+        <div class="burger">
+            <img src="burger.png" alt="Pixel Burger" width="400">
+        </div>
+        
+        <div class="section">
+            <h2>What Am I?</h2>
+            <p>I am a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bun.</p>
+        </div>
+
+        <div class="section">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>Burger Bun</li>
+                <li>Beef Patty</li>
+                <li>Lettuce</li>
+                <li>Tomato</li>
+                <li>Cheese</li>
+                <li>Condiments (Ketchup, Mayo, etc.)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>How to Make a Burger</h2>
+            <ol>
+                <li>Grill the beef patty.</li>
+                <li>Toast the burger bun.</li>
+                <li>Add lettuce, tomato, and cheese.</li>
+                <li>Place the beef patty inside the bun.</li>
+                <li>Add condiments and serve!</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Fun Facts</h2>
+            <p>The world's largest burger weighed over 2,500 pounds!</p>
+        </div>
+
+        <div class="hide-and-seek">
+            <h2>Hide and Seek</h2>
+            <p>I am hiding in the code, can you find me?</p>
+        </div>
+</body>
+</html>
