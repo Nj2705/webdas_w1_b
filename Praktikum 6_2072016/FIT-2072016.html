@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Studi Teknik Informatika</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #00A3A8;
+            color: white;
+            padding: 1rem 0;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .logo img {
+            height: 60px;
+        }
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav {
+            background-color: #00858a;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+        .nav-list li {
+            position: relative;
+        }
+        .nav-list a {
+            display: block;
+            padding: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-list a:hover {
+            background-color: #007478;
+        }
+        .has-dropdown:hover .dropdown {
+            display: block;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #00A3A8;
+            list-style: none;
+            padding: 0;
+            top: 100%;
+        }
+        .dropdown li a {
+            padding: 0.5rem 1rem;
+            display: block;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .banner {
+            width: 100%;
+            height: 300px;
+            background: url('banner.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card-content {
+            padding: 1rem;
+        }
+        aside {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #007478;
+            color: white;
+            padding: 2rem 0;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #00bfc5;
+            padding-bottom: 0.5rem;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer-bottom{
+            position: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div class="site-title">
+                <h1>Program Studi Teknik Informatika</h1><br>
+                <p>Fakultas Teknologi dan Rekayasa Cerdas</p>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="#">Beranda</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Profil</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Profil</a></li>
+                        <li><a href="#">Visi, Misi, dan Tujuan</a></li>
+                        <li><a href="#">Struktur Organisasi</a></li>
+                        <li><a href="#">Dosen</a></li>
+                        <li><a href="#">Fasilitas</a></li>
+                        <li><a href="#">Kerjasama</a></li>
+                        <li><a href="#">Tenaga Kependidikan</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Akademik</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Akademik</a></li>
+                        <li><a href="#">S2 Ilmu Komputer</a></li>
+                        <li><a href="#">S-1 Teknik Informatika</a></li>
+                        <li><a href="#">S-1 Sistem Informasi Bisnis</a></li>
+                        <li><a href="#">Kurikulum</a></li>
+                        <li><a href="#">Beasiswa</a></li>
+                        <li><a href="#">Kampus Merdeka</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <li class="has-dropdown">
+                        <a href="#">Pendaftaran</a>
+                    </li>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Kemahasiswaan</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Agenda Fakultas</a></li>
+                        <li><a href="#">Survei Mahasiswa FIT</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Berita</a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Artikel</a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Alumni</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Campus Hiring</a></li>
+                        <li><a href="#">Ikatan Alumni</a></li>
+                        <li><a href="#">Testimoni</a></li>
+                        <li><a href="#">Hall Of Fame</a></li>
+                        <li><a href="#">Survey Alumni</a></li>
+                        <li><a href="#">Tracer Study</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="banner">
+        Selamat Datang di Teknik Informatika
+    </div>
+    <main>
+        <section>
+            <h3>Tentang Program Studi</h3>
+            <p>Program Studi Teknik Informatika didirikan untuk memenuhi kebutuhan pasar kerja akan tenaga profesional di bidang teknologi informasi.</p>
+            <p>Dengan dukungan dosen-dosen berkualitas dan kurikulum yang selalu diperbarui, kami berkomitmen untuk menghasilkan lulusan yang siap bersaing di dunia kerja.</p>
+            <p>Mahasiswa akan mempelajari berbagai bidang seperti Pemograman, Basis Data, Jaringan Komputer, Kecerdasan Buatan, Pengembangan Web dan Mobile, serta Keamanan Sistem Informasi.</p>
+            <p>Selain itu, mahasiswa juga akan dibekali dengan soft skills dan pengalaman magang untuk melengkapi kompetensi mereka.</p>
+        </section>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Visi & Misi</h3>
+                    <p>Menjadi program studi teknik informatika yang unggul dan berkualitas dalam pendidikan.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Kurikulum</h3>
+                    <p>Kurikulum yang dirancang sesuai dengan kebutuhan industri.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Fasilitas</h3>
+                    <p>Fasilitas modern termasuk laboratorium komputer dan ruang diskusi.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Program Studi Teknik Informatika</h3>
+                <p>Gedung Fakultas Teknologi dan Rekayasa Cerdas</p>
+                <p>Jalan Surya Sumantri No. 65</p>
+                <p>Bandung, Jawa Barat 40164</p>
+            </div>
+            <div class="footer-section">
+                <h3>Link Penting</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Akademik</a></li>
+                    <li><a href="#">Pendaftaran</a></li>
+                    <li><a href="#">Kemahasiswaan</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak Kami</h3>
+                <p>Telephone: +62 22 - 201 2186</p>
+                <p>Email: informatics.smartech@maranatha.edu</p>
+                <p>WhatsApp: 0813-2482-3465</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Program Studi Teknik Informatika. Hak Cipta Dilindungi.
+            -- Made by 2072016 - Nicole Jade
+        </div>
+    </footer>
+</body>
+</html>
