@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Modifier</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: white;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    #resultText {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Ubah Warna Halaman</h1>
+    <label for="bgColor">Pilih Warna Latar Belakang:</label>
+    <select id="bgColor">
+      <option>Merah</option>
+      <option>Biru</option>
+      <option>Hijau</option>
+      <option>Kuning</option>
+      <option>Putih</option>
+    </select>
+
+    <label for="btnColor">Pilih Warna Tombol:</label>
+    <select id="btnColor">
+      <option>Merah</option>
+      <option>Biru</option>
+      <option>Hijau</option>
+      <option>Kuning</option>
+      <option>Putih</option>
+    </select>
+
+    <label for="textColor">Pilih Warna Teks:</label>
+    <select id="textColor">
+      <option>Merah</option>
+      <option>Biru</option>
+      <option>Hijau</option>
+      <option>Kuning</option>
+      <option>Putih</option>
+    </select>
+
+    <button id="changeBtn" style="background-color: blue; color: white;">Ganti Warna</button>
+    <p id="resultText"></p>
+  </div>
+
+  <script>
+    const colorMap = {
+      "Merah": "red",
+      "Biru": "blue",
+      "Hijau": "green",
+      "Kuning": "yellow",
+      "Putih": "white"
+    };
+
+    document.getElementById('changeBtn').addEventListener('click', function () {
+      const bg = document.getElementById('bgColor').value;
+      const btn = document.getElementById('btnColor').value;
+      const text = document.getElementById('textColor').value;
+
+      document.body.style.backgroundColor = colorMap[bg];
+      this.style.backgroundColor = colorMap[btn];
+      document.getElementById('resultText').style.color = colorMap[text];
+      document.getElementById('resultText').textContent = `Ini ${text.toLowerCase()}`;
+    });
+  </script>
+
+</body>
+</html>

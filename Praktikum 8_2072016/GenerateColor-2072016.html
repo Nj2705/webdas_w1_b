@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Warna</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+    }
+
+    .box {
+      width: 200px;
+      margin: 100px auto;
+      padding: 20px;
+      text-align: center;
+      border: 2px solid black;
+      background-color: white;
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    #colorValue {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 5px 15px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2><strong>Color Generator</strong></h2>
+    <button onclick="generateColor()">Generate</button>
+    <p id="colorValue"></p>
+  </div>
+
+  <script>
+    function generateColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+
+      const rgb = `rgb(${r},${g},${b})`;
+
+      document.body.style.backgroundColor = rgb;
+      document.getElementById('colorValue').textContent = rgb;
+    }
+  </script>
+
+</body>
+</html>

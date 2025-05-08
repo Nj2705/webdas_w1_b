@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Suit Game</title>
+  <style>
+    body {
+      background-color: tomato;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .player-box {
+      text-align: center;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body onload="main()">
+
+  <h2>Suit Game</h2>
+
+  <div class="container">
+    <div class="player-box">
+      <p><strong>Player</strong></p>
+      <img id="playerImg" src="" alt="Player">
+    </div>
+    <div>
+      <p><strong>VS</strong></p>
+    </div>
+    <div class="player-box">
+      <p><strong>Computer</strong></p>
+      <img id="computerImg" src="" alt="Computer">
+    </div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const choices = {
+      1: { name: "SCISSORS", img: "1.png" },
+      2: { name: "PAPER", img: "2.png" },
+      3: { name: "ROCK", img: "3.png" }
+    };
+
+    function main() {
+      let userInput = prompt("1.Gunting 2.Kertas 3.Batu");
+
+      let playerChoice = parseInt(userInput);
+      if (![1, 2, 3].includes(playerChoice)) {
+        alert("Input harus 1, 2, atau 3!");
+        location.reload();
+        return;
+      }
+
+      let computerChoice = Math.floor(Math.random() * 3) + 1;
+
+      document.getElementById("playerImg").src = choices[playerChoice].img;
+      document.getElementById("computerImg").src = choices[computerChoice].img;
+
+      let resultText = getResult(playerChoice, computerChoice);
+
+      document.getElementById("result").textContent = resultText;
+    }
+
+    function getResult(player, computer) {
+      if (player === computer) return "Draw";
+      if (
+        (player === 1 && computer === 2) || // scissors vs paper
+        (player === 2 && computer === 3) || // paper vs rock
+        (player === 3 && computer === 1)    // rock vs scissors
+      ) {
+        return "Player Win";
+      } else {
+        return "Computer Win";
+      }
+    }
+  </script>
+
+</body>
+</html>
