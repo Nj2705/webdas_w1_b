@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon Battle</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #f8f9fa; margin: 0; padding: 20px; }
+    .character-select, .battle-area { display: none; }
+    .characters, .battle { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+    .card { border: 1px solid #ccc; border-radius: 10px; padding: 10px; background: white; width: 150px; cursor: pointer; }
+    .card img { width: 100%; height: auto; border-radius: 8px; }
+    .hp-bar { height: 20px; width: 200px; background: #ddd; border-radius: 10px; overflow: hidden; margin: 10px auto; position: relative; }
+    .hp-inner { height: 100%; transition: width 0.3s ease; }
+    .log { margin-top: 10px; }
+    .battle-status { display: flex; justify-content: space-around; align-items: center; margin: 20px 0; }
+    .attack-btn { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    .attack-btn:disabled { background-color: #aaa; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h1>Brainrot Pokémon Battle</h1>
+  <div class="intro">
+    <h3>Select Your Character</h3>
+    <div class="characters" id="characterSelect"></div>
+  </div>
+
+  <div class="battle-area">
+    <h3>Battle Start!</h3>
+    <div class="battle">
+      <div id="playerCard"></div>
+      <div id="enemyCard"></div>
+    </div>
+    <div class="battle-status">
+      <div class="hp-bar"><div id="playerHpBar" class="hp-inner" style="background: green; width: 100%"></div></div>
+      <button class="attack-btn" id="attackBtn">Attack!</button>
+      <div class="hp-bar"><div id="enemyHpBar" class="hp-inner" style="background: red; width: 100%"></div></div>
+    </div>
+    <div class="log" id="battleLog"></div>
+  </div>
+
+  <script>
+    const characters = [
+      { name: "Tung Tung Tung Sahur", img: "tung.webp", hp: 97, attack: 13 },
+      { name: "Tralalero Tralala", img: "tralalero.jpeg", hp: 95, attack: 15 },
+      { name: "Cappuccino Assassino", img: "cappuccino.jpeg", hp: 90, attack: 20 },
+      { name: "Bombardilo Crocodilo", img: "bombardilo.jpeg", hp: 100, attack: 10 }
+    ];
+
+    let player, enemy;
+
+    const characterSelect = document.getElementById("characterSelect");
+    const battleArea = document.querySelector(".battle-area");
+    const playerCard = document.getElementById("playerCard");
+    const enemyCard = document.getElementById("enemyCard");
+    const attackBtn = document.getElementById("attackBtn");
+    const battleLog = document.getElementById("battleLog");
+    const playerHpBar = document.getElementById("playerHpBar");
+    const enemyHpBar = document.getElementById("enemyHpBar");
+
+    function renderCharacterCards() {
+      characters.forEach((char, idx) => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `<img src="${char.img}" alt="${char.name}"><h4>${char.name}</h4><p>HP: ${char.hp} | Attack: ${char.attack}</p>`;
+        div.onclick = () => startBattle(idx);
+        characterSelect.appendChild(div);
+      });
+      document.querySelector(".character-select").style.display = "block";
+    }
+
+    function startBattle(index) {
+      player = { ...characters[index], currentHP: characters[index].hp };
+      do {
+        enemy = { ...characters[Math.floor(Math.random() * characters.length)] };
+      } while (enemy.name === player.name);
+      enemy.currentHP = enemy.hp;
+
+      document.querySelector(".intro").style.display = "none";
+      battleArea.style.display = "block";
+      updateBattleCards();
+    }
+
+    function getRandomDamage(base) {
+      const types = {
+        light: [5, 10],
+        medium: [11, 15],
+        heavy: [16, 20]
+      };
+      const keys = Object.keys(types);
+      const choice = keys[Math.floor(Math.random() * keys.length)];
+      const [min, max] = types[choice];
+      const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+      return { damage: rand + base, type: choice };
+    }
+
+    function updateBattleCards() {
+      playerCard.innerHTML = `<img src="${player.img}" width="150"><p>Your character: ${player.name}</p><p>Your HP: ${player.currentHP}</p>`;
+      enemyCard.innerHTML = `<img src="${enemy.img}" width="150"><p>Opponent: ${enemy.name}</p><p>Opponent HP: ${enemy.currentHP}</p>`;
+      playerHpBar.style.width = `${(player.currentHP / player.hp) * 100}%`;
+      enemyHpBar.style.width = `${(enemy.currentHP / enemy.hp) * 100}%`;
+    }
+
+    attackBtn.onclick = () => {
+      if (player.currentHP <= 0 || enemy.currentHP <= 0) return;
+
+      const playerAtk = getRandomDamage(player.attack);
+      enemy.currentHP -= playerAtk.damage;
+      enemy.currentHP = Math.max(0, enemy.currentHP);
+
+      let log = `You used a ${playerAtk.type} attack! You dealt ${playerAtk.damage} damage.<br>`;
+
+      if (enemy.currentHP > 0) {
+        const enemyAtk = getRandomDamage(enemy.attack);
+        player.currentHP -= enemyAtk.damage;
+        player.currentHP = Math.max(0, player.currentHP);
+        log += `Opponent attacks back with a ${enemyAtk.type} attack! You took ${enemyAtk.damage} damage.`;
+      }
+
+      updateBattleCards();
+      battleLog.innerHTML = log;
+
+      if (player.currentHP <= 0 || enemy.currentHP <= 0) {
+        attackBtn.disabled = true;
+        battleLog.innerHTML += `<br><strong>${player.currentHP <= 0 ? 'You Lost!' : 'You Won!'}</strong>`;
+      }
+    };
+
+    renderCharacterCards();
+  </script>
+</body>
+</html>

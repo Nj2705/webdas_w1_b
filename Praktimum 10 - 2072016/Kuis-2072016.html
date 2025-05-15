@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis</title>
+</head>
+<style>
+    body{
+        background-color: pink;
+        font-family: sans-serif;
+        padding: 20px;
+    }
+    .quiz-box{
+        margin-bottom: 30px;
+    }
+    .result{
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    .correct{
+        color: green;
+    }
+    .wrong{
+        color: red;
+    }
+    button{
+        margin-top: 5px;
+        padding: 5px 10px;
+    }
+</style>
+<body>
+    <div class="quiz-box" id="quiz1">
+        <p>1. manakah di antara bahasa pemograman ini yang salah?/p>
+        <ol type="a">
+          <li>HTML</li>
+          <li>Opera</li>
+          <li>CSS</li>
+          <li>Python</li>
+        </ol>
+        <input type="text" id="answer1" maxlength="1"/>
+        <button onclick="checkAnswer('answer1', 'b', 'result1', 'retry1')">Submit</button>
+        <div class="result" id="result1"></div>
+        <button id="retry1" style="display:none;" onclick="retry('answer1', 'result1', 'retry1')">Retry</button>
+      </div>
+    
+      <div class="quiz-box" id="quiz2">
+        <p>2. Which in the following apps here is not a web browser?</p>
+        <ol type="a">
+          <li>Google Chrome</li>
+          <li>Safari</li>
+          <li>Vuze</li>
+          <li>Opera</li>
+        </ol>
+        <input type="text" id="answer2" maxlength="1"/>
+        <button onclick="checkAnswer('answer2', 'c', 'result2', 'retry2')">Submit</button>
+        <div class="result" id="result2"></div>
+        <button id="retry2" style="display:none;" onclick="retry('answer2', 'result2', 'retry2')">Retry</button>
+      </div>
+    
+      <script>
+        function checkAnswer(inputId, correctAnswer, resultId, retryId) {
+          const answer = document.getElementById(inputId).value.toLowerCase();
+          const resultDiv = document.getElementById(resultId);
+          const retryBtn = document.getElementById(retryId);
+    
+          if (answer === correctAnswer) {
+            resultDiv.textContent = "jawaban benar";
+            resultDiv.className = "result correct";
+            retryBtn.style.display = "none";
+          } else {
+            resultDiv.textContent = "jawaban salah";
+            resultDiv.className = "result wrong";
+            retryBtn.style.display = "inline-block";
+          }
+        }
+    
+        function retry(inputId, resultId, retryId) {
+          document.getElementById(inputId).value = "";
+          document.getElementById(resultId).textContent = "";
+          document.getElementById(retryId).style.display = "none";
+        }
+      </script>
+    
+</body>
+</html>
