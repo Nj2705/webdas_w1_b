@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login & Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+    .login-page, .dashboard { display: none; padding: 20px; }
+    .center-box {
+      max-width: 300px;
+      margin: 100px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .center-box input { width: 100%; margin: 10px 0; padding: 8px; }
+    .center-box button { width: 100%; padding: 8px; background: #007BFF; color: white; border: none; }
+    .error-msg { color: red; margin-top: 10px; }
+    .content { margin-top: 20px; }
+    .produk-card {
+      display: inline-block; margin: 10px; text-align: center;
+    }
+    .produk-card img {
+      width: 120px; height: 120px; object-fit: cover;
+    }
+    .hidden { display: none; }
+    .logout-btn { background: red; color: white; border: none; padding: 8px 12px; margin-left: 10px; }
+    .top-buttons { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<!-- Login Page -->
+<!--email nya user@gmail.com-->
+<!--password nya password123-->
+<div class="login-page" id="loginPage">
+  <div class="center-box">
+    <h2>Login</h2>
+    <label>Email</label>
+    <input type="text" id="email" placeholder="Masukkan email">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Masukkan password">
+    <button onclick="login()">Login</button>
+    <p class="error-msg" id="error"></p>
+  </div>
+</div>
+
+<!-- Dashboard Page -->
+<div class="dashboard" id="dashboardPage">
+  <h3 id="welcome"></h3>
+  <div class="top-buttons">
+    <button onclick="showInfo()">Tampilkan Info Penjualan</button>
+    <button onclick="showProduk()">Tampilkan Produk Terlaris</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+  <div id="info-penjualan" class="content hidden"></div>
+  <div id="produk-terlaris" class="content hidden"></div>
+</div>
+
+<!-- Embedded JSON Data -->
+<script>
+const data = {
+  penjualan: {
+    total: 10000000,
+    produkTerjual: 500,
+    pengunjung: 2000
+  },
+  produk: [
+    {
+      nama: "Kaos Nyaman",
+      deskripsi: "Kaos yang nyaman dipakai",
+      gambar: "kaos.jpeg"
+    },
+    {
+      nama: "Topi Keren",
+      deskripsi: "Topi yang keren dipakai",
+      gambar: "topi.jpeg"
+    },
+    {
+      nama: "Sandal Empuk",
+      deskripsi: "Sandal yang empuk dipakai",
+      gambar: "sandal.webp"
+    }
+  ]
+};
+
+// Page Initialization
+window.onload = function () {
+  const username = localStorage.getItem("username");
+  if (username) {
+    showDashboard(username);
+  } else {
+    document.getElementById("loginPage").style.display = "block";
+  }
+
+  // Disable back after logout
+  window.addEventListener('popstate', () => {
+    if (!localStorage.getItem("username")) {
+      location.reload();
+    }
+  });
+};
+
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  if (email === "user@gmail.com" && password === "password123") {
+    localStorage.setItem("username", "Tung Tung Tung Tung Sahur");
+    showDashboard("Tung Tung Tung Tung Sahur");
+  } else {
+    document.getElementById("error").innerText = "Email atau password salah.";
+  }
+}
+
+function showDashboard(name) {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("dashboardPage").style.display = "block";
+  document.getElementById("welcome").innerText = `Selamat datang, ${name}!`;
+}
+
+function logout() {
+  localStorage.removeItem("username");
+  location.reload();
+}
+
+function showInfo() {
+  const info = `
+    <div>Total Penjualan Bulanan: Rp ${data.penjualan.total.toLocaleString()}</div>
+    <div>Jumlah Produk Terjual: ${data.penjualan.produkTerjual}</div>
+    <div>Total Pengunjung Toko: ${data.penjualan.pengunjung}</div>
+  `;
+  document.getElementById("info-penjualan").innerHTML = info;
+  document.getElementById("info-penjualan").classList.remove("hidden");
+  document.getElementById("produk-terlaris").classList.add("hidden");
+}
+
+function showProduk() {
+  let html = "";
+  data.produk.forEach(p => {
+    html += `
+      <div class="produk-card">
+        <img src="${p.gambar}" alt="${p.nama}">
+        <h4>${p.nama}</h4>
+        <p>${p.deskripsi}</p>
+      </div>
+    `;
+  });
+  document.getElementById("produk-terlaris").innerHTML = html;
+  document.getElementById("produk-terlaris").classList.remove("hidden");
+  document.getElementById("info-penjualan").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>

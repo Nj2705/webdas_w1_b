@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Manajemen Produk</title>
+<style>
+  /* ---------- WARNA DASAR ---------- */
+  :root{
+    --primary:#2980b9;   /* header tabel */
+    --success:#27ae60;   /* tombol hijau */
+    --warning:#f39c12;   /* tombol oranye */
+    --danger:#e74c3c;    /* tombol merah */
+    --page:#f4f6f8;      /* background page */
+  }
+
+  /* ---------- RESET & PAGE ---------- */
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+  body{background:var(--page);min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:30px}
+
+  /* ---------- WRAPPER ---------- */
+  .card{
+    width:100%;max-width:850px;background:#fff;border-radius:6px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)
+  }
+
+  /* ---------- FORM ---------- */
+  form{display:grid;grid-template-columns:repeat(3,1fr);grid-gap:10px;margin-bottom:15px}
+  form textarea{grid-column:1/4;resize:vertical;min-height:80px;padding:8px}
+  form input,form textarea{padding:8px;border:1px solid #ccc;border-radius:4px;font-size:14px}
+  .btn{border:none;border-radius:4px;padding:8px 14px;font-size:14px;color:#fff;cursor:pointer}
+  .btn-success{background:var(--success)}
+  .btn-warning{background:var(--warning)}
+  .btn-danger{background:var(--danger)}
+  .btn:hover{opacity:.9}
+
+  /* ---------- TABLE ---------- */
+  table{width:100%;border-collapse:collapse}
+  thead{background:var(--primary);color:#fff}
+  th,td{padding:10px;text-align:left;border-bottom:1px solid #ddd;font-size:14px}
+  td.center{text-align:center}
+  tbody tr:last-child td{border-bottom:none}
+  .empty-row td{padding:25px;text-align:center;color:#888;font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- ==== FORM ==== -->
+  <form id="productForm">
+    <input type="hidden" id="productId">
+    <input type="text" id="nama"     placeholder="Nama Produk"  required>
+    <input type="number" id="harga"  placeholder="Harga (Rp)"   required min="0">
+    <input type="number" id="stok"   placeholder="Stok"         required min="0">
+    <textarea id="deskripsi"         placeholder="Deskripsi Produk" required></textarea>
+    <div style="grid-column:3/4;text-align:right">
+      <button type="submit" id="submitBtn" class="btn btn-success">Tambah Produk</button>
+    </div>
+  </form>
+
+  <!-- ==== TABEL ==== -->
+  <table>
+    <thead>
+      <tr>
+        <th style="width:60px">ID</th>
+        <th>Nama Produk</th>
+        <th style="width:110px">Harga (Rp)</th>
+        <th>Deskripsi</th>
+        <th style="width:70px">Stok</th>
+        <th style="width:120px">Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+</div>
+
+<script>
+/* ---------- VARIABEL GLOBAL ---------- */
+let products = JSON.parse(localStorage.getItem('products')) || [];
+
+/* ---------- UTIL ---------- */
+function generateId(){
+  return products.length ? Math.max(...products.map(p=>p.id))+1 : 1;
+}
+
+function resetForm(){
+  document.getElementById('productId').value='';
+  document.getElementById('nama').value='';
+  document.getElementById('harga').value='';
+  document.getElementById('stok').value='';
+  document.getElementById('deskripsi').value='';
+  document.getElementById('submitBtn').textContent='Tambah Produk';
+}
+
+function formatRupiah(num){
+  return new Intl.NumberFormat('id-ID').format(num);
+}
+
+/* ---------- CRUD CORE ---------- */
+function addProduct(product){
+  products.push(product);
+  saveAndRender();
+}
+
+function updateProduct(updated){
+  const idx = products.findIndex(p=>p.id===updated.id);
+  if(idx>-1){
+    products[idx]=updated;
+    saveAndRender();
+  }
+}
+
+function deleteProduct(id){
+  if(confirm('Apakah Anda yakin ingin menghapus produk ini?')){
+    products = products.filter(p=>p.id!==id);
+    saveAndRender();
+  }
+}
+
+function editProduct(id){
+  const p = products.find(p=>p.id===id);
+  if(!p) return;
+  document.getElementById('productId').value=p.id;
+  document.getElementById('nama').value=p.nama;
+  document.getElementById('harga').value=p.harga;
+  document.getElementById('stok').value=p.stok;
+  document.getElementById('deskripsi').value=p.deskripsi;
+  document.getElementById('submitBtn').textContent='Update Produk';
+}
+
+/* ---------- RENDER & STORAGE ---------- */
+function renderTable(){
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML='';
+  if(products.length===0){
+    tbody.innerHTML=`<tr class="empty-row"><td colspan="6">Belum ada produk.</td></tr>`;
+    return;
+  }
+  products.forEach(p=>{
+    tbody.insertAdjacentHTML('beforeend',`
+      <tr>
+        <td class="center">${p.id}</td>
+        <td>${p.nama}</td>
+        <td>${formatRupiah(p.harga)}</td>
+        <td>${p.deskripsi}</td>
+        <td class="center">${p.stok}</td>
+        <td class="center">
+          <button class="btn btn-warning" style="margin-bottom:3px" onclick="editProduct(${p.id})">Edit</button>
+          <button class="btn btn-danger" onclick="deleteProduct(${p.id})">Hapus</button>
+        </td>
+      </tr>
+    `);
+  });
+}
+
+function saveAndRender(){
+  localStorage.setItem('products', JSON.stringify(products));
+  renderTable();
+  resetForm();
+}
+
+/* ---------- FORM SUBMIT ---------- */
+document.getElementById('productForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const idField = document.getElementById('productId').value;
+
+  const productObj = {
+    id: idField ? Number(idField) : generateId(),
+    nama: document.getElementById('nama').value.trim(),
+    harga: Number(document.getElementById('harga').value),
+    stok: Number(document.getElementById('stok').value),
+    deskripsi: document.getElementById('deskripsi').value.trim()
+  };
+
+  if(idField){           // mode update
+    updateProduct(productObj);
+  }else{                 // mode add
+    addProduct(productObj);
+  }
+});
+
+/* ---------- INISIALISASI ---------- */
+renderTable();
+</script>
+
+</body>
+</html>
