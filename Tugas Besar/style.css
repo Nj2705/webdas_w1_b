@@ -1,0 +1,11 @@
+/* Efek teks khusus */
+h2 {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive grid contoh (untuk galeri, dst.) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
