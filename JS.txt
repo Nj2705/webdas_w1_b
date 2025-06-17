@@ -1,0 +1,111 @@
+JS Looping :
+untuk slide carousel nya
+
+slides.forEach((slide, i) => { ... });      // Menyembunyikan dan menampilkan slide
+indicators.forEach((ind, i) => { ... });    // Menyetel indikator aktif
+cards.forEach((card, i) => { ... });        // Menampilkan kartu rekomendasi dengan animasi
+items.forEach(item => { ... });             // Filtering menu berdasarkan input
+
+JS Conditional :
+if (index < 0) index = slides.length - 1;
+if (index >= slides.length) index = 0;
+if (rekomendasi.classList.contains('opacity-0')) { ... } else { ... }
+if (!seeMoreBtn.contains(e.target) && !rekomendasi.contains(e.target)) { ... }
+if (entry.isIntersecting) { ... }
+if (item.textContent.toLowerCase().includes(input)) { ... } else { ... }
+
+JS Event :
+- DOMContentLoaded
+ document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.rekom-card');
+    cards.forEach((card, i) => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(30px)';
+      setTimeout(() => {
+        card.style.transition = 'all 0.8s ease-out';
+        card.style.opacity = 1;
+        card.style.transform = 'translateY(0)';
+      }, i * 300); // jeda per kartu
+    });
+  });
+
+- click
+ seeMoreBtn.addEventListener('click', () => {
+    if (rekomendasi.classList.contains('opacity-0')) {
+      rekomendasi.classList.remove('opacity-0', 'pointer-events-none');
+      rekomendasi.classList.add('opacity-100');
+    } else {
+      rekomendasi.classList.add('opacity-0', 'pointer-events-none');
+      rekomendasi.classList.remove('opacity-100');
+    }
+  });
+- mouseenter / mouseleave
+- touchstart / touchend
+- window.addEventListener('click')
+window.addEventListener('click', (e) => {
+    if (!seeMoreBtn.contains(e.target) && !rekomendasi.contains(e.target)) {
+      rekomendasi.classList.add('opacity-0', 'pointer-events-none');
+      rekomendasi.classList.remove('opacity-100');
+    }
+  });
+
+JS Function :
+- showSlide(index)
+function showSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
+    indicators.forEach((ind, i) => {
+      ind.classList.toggle('opacity-100', i === index);
+      ind.classList.toggle('opacity-60', i !== index);
+    });
+    currentSlide = index;
+  }
+
+- nextSlide()
+ function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+- prevSlide()
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+- filterMenu()
+function filterMenu() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.menu-item');
+
+    items.forEach(item => {
+      const card = item.closest('div'); // Ambil elemen wrapper terluar dari item
+      if (item.textContent.toLowerCase().includes(input)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+Text Effect :
+setTimeout(() => {
+  const btn = document.getElementById('seeMoreBtn');
+  btn.classList.remove('opacity-0', 'pointer-events-none');
+  btn.classList.add('opacity-100');
+}, 5000); // 7000 milidetik = 7 detik
+ document.addEventListener("DOMContentLoaded", function () {
+    const ratingSection = document.getElementById("rating");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          ratingSection.classList.remove("opacity-0", "translate-y-10");
+          ratingSection.classList.add("opacity-100", "translate-y-0");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(ratingSection);
+  });
